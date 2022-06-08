@@ -1,13 +1,40 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=34 format=2]
 
-[ext_resource path="res://models/Hull_base_yellow.png" type="Texture" id=1]
-[ext_resource path="res://models/Buoy_hull.obj" type="ArrayMesh" id=2]
+[ext_resource path="res://models/hull_pieces/Level_2_7.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://models/hull_pieces/Level_2_8.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://scripts/camera_animation.gd" type="Script" id=3]
+[ext_resource path="res://models/Hull_in_pieces.png" type="Texture" id=4]
+[ext_resource path="res://models/hull_pieces/Level_3_3.obj" type="ArrayMesh" id=5]
+[ext_resource path="res://models/hull_pieces/Level_3_6.obj" type="ArrayMesh" id=6]
+[ext_resource path="res://models/hull_pieces/Level_3_7.obj" type="ArrayMesh" id=7]
+[ext_resource path="res://models/hull_pieces/Level_3_8.obj" type="ArrayMesh" id=8]
+[ext_resource path="res://models/hull_pieces/Level_3_2.obj" type="ArrayMesh" id=9]
+[ext_resource path="res://models/hull_pieces/Level_3_4.obj" type="ArrayMesh" id=10]
+[ext_resource path="res://models/hull_pieces/Level_3_5.obj" type="ArrayMesh" id=11]
+[ext_resource path="res://models/hull_pieces/Level_4.obj" type="ArrayMesh" id=12]
+[ext_resource path="res://models/hull_pieces/Level_3_1.obj" type="ArrayMesh" id=13]
+[ext_resource path="res://models/hull_pieces/Level_2_2.obj" type="ArrayMesh" id=14]
+[ext_resource path="res://models/hull_pieces/Floor_1.obj" type="ArrayMesh" id=15]
+[ext_resource path="res://models/hull_pieces/Floor_2.obj" type="ArrayMesh" id=16]
+[ext_resource path="res://models/hull_pieces/Level_1_3.obj" type="ArrayMesh" id=17]
+[ext_resource path="res://models/hull_pieces/Level_1_5.obj" type="ArrayMesh" id=18]
+[ext_resource path="res://models/hull_pieces/Level_1_4.obj" type="ArrayMesh" id=19]
+[ext_resource path="res://models/hull_pieces/Level_1_6.obj" type="ArrayMesh" id=20]
+[ext_resource path="res://models/hull_pieces/Level_2_3.obj" type="ArrayMesh" id=21]
+[ext_resource path="res://models/hull_pieces/Level_2_4.obj" type="ArrayMesh" id=22]
+[ext_resource path="res://models/hull_pieces/Level_0.obj" type="ArrayMesh" id=23]
+[ext_resource path="res://models/hull_pieces/Level_2_5.obj" type="ArrayMesh" id=24]
+[ext_resource path="res://models/hull_pieces/Level_2_6.obj" type="ArrayMesh" id=25]
+[ext_resource path="res://models/hull_pieces/Level_1_1.obj" type="ArrayMesh" id=26]
+[ext_resource path="res://models/hull_pieces/Level_1_7.obj" type="ArrayMesh" id=27]
+[ext_resource path="res://models/hull_pieces/Level_1_8.obj" type="ArrayMesh" id=28]
+[ext_resource path="res://models/hull_pieces/Level_2_1.obj" type="ArrayMesh" id=29]
+[ext_resource path="res://models/hull_pieces/Level_1_2.obj" type="ArrayMesh" id=30]
 
-[sub_resource type="SpatialMaterial" id=1]
-albedo_texture = ExtResource( 1 )
+[sub_resource type="SpatialMaterial" id=4]
+albedo_texture = ExtResource( 4 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=5]
 resource_name = "move_camera_down"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("AnimationPlayer/camera_pivot/camera_base:translation:y")
@@ -20,7 +47,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.3 )
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=6]
 resource_name = "move_camera_up"
 tracks/0/type = "bezier"
 tracks/0/path = NodePath("AnimationPlayer/camera_pivot/camera_base:translation:y")
@@ -35,21 +62,131 @@ tracks/0/keys = {
 
 [node name="Hull" type="Spatial"]
 
-[node name="Buoy_hull" type="MeshInstance" parent="."]
-mesh = ExtResource( 2 )
-material/0 = SubResource( 1 )
+[node name="pieces" type="Spatial" parent="."]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Buoy_hull"]
-anims/move_camera_down = SubResource( 2 )
-anims/move_camera_up = SubResource( 3 )
+[node name="Floor_1" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 15 )
+material/0 = SubResource( 4 )
+
+[node name="Floor_2" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 16 )
+material/0 = SubResource( 4 )
+
+[node name="Level_0" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 23 )
+material/0 = SubResource( 4 )
+
+[node name="Level_1_1" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 26 )
+material/0 = SubResource( 4 )
+
+[node name="Level_1_2" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 30 )
+material/0 = SubResource( 4 )
+
+[node name="Level_1_3" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 17 )
+material/0 = SubResource( 4 )
+
+[node name="Level_1_4" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 19 )
+material/0 = SubResource( 4 )
+
+[node name="Level_1_5" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 18 )
+material/0 = SubResource( 4 )
+
+[node name="Level_1_6" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 20 )
+material/0 = SubResource( 4 )
+
+[node name="Level_1_7" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 27 )
+material/0 = SubResource( 4 )
+
+[node name="Level_1_8" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 28 )
+material/0 = SubResource( 4 )
+
+[node name="Level_2_1" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 29 )
+material/0 = SubResource( 4 )
+
+[node name="Level_2_2" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 14 )
+material/0 = SubResource( 4 )
+
+[node name="Level_2_3" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 21 )
+material/0 = SubResource( 4 )
+
+[node name="Level_2_4" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 22 )
+material/0 = SubResource( 4 )
+
+[node name="Level_2_5" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 24 )
+material/0 = SubResource( 4 )
+
+[node name="Level_2_6" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 25 )
+material/0 = SubResource( 4 )
+
+[node name="Level_2_7" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="Level_2_8" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 2 )
+material/0 = SubResource( 4 )
+
+[node name="Level_3_1" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 13 )
+material/0 = SubResource( 4 )
+
+[node name="Level_3_2" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 9 )
+material/0 = SubResource( 4 )
+
+[node name="Level_3_3" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 5 )
+material/0 = SubResource( 4 )
+
+[node name="Level_3_4" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 10 )
+material/0 = SubResource( 4 )
+
+[node name="Level_3_5" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 11 )
+material/0 = SubResource( 4 )
+
+[node name="Level_3_6" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 6 )
+material/0 = SubResource( 4 )
+
+[node name="Level_3_7" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 7 )
+material/0 = SubResource( 4 )
+
+[node name="Level_3_8" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 8 )
+material/0 = SubResource( 4 )
+
+[node name="Level_4" type="MeshInstance" parent="pieces"]
+mesh = ExtResource( 12 )
+material/0 = SubResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/move_camera_down = SubResource( 5 )
+anims/move_camera_up = SubResource( 6 )
 script = ExtResource( 3 )
 
-[node name="camera_pivot" type="Spatial" parent="Buoy_hull/AnimationPlayer"]
+[node name="camera_pivot" type="Spatial" parent="AnimationPlayer"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0 )
 
-[node name="camera_base" type="Spatial" parent="Buoy_hull/AnimationPlayer/camera_pivot"]
+[node name="camera_base" type="Spatial" parent="AnimationPlayer/camera_pivot"]
 
-[node name="camera" type="Camera" parent="Buoy_hull/AnimationPlayer/camera_pivot/camera_base"]
+[node name="camera" type="Camera" parent="AnimationPlayer/camera_pivot/camera_base"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
 
-[connection signal="animation_finished" from="Buoy_hull/AnimationPlayer" to="Buoy_hull/AnimationPlayer" method="_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_animation_finished"]

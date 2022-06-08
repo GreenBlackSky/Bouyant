@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/Level_0.obj-9746b2fc7e9976e807b2f6f48e74f6bd.mesh"
+
+[deps]
+
+files=[ "res://.import/Level_0.obj-9746b2fc7e9976e807b2f6f48e74f6bd.mesh" ]
+
+source_file="res://models/hull_pieces/Level_0.obj"
+dest_files=[ "res://.import/Level_0.obj-9746b2fc7e9976e807b2f6f48e74f6bd.mesh", "res://.import/Level_0.obj-9746b2fc7e9976e807b2f6f48e74f6bd.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+octahedral_compression=true
+optimize_mesh_flags=4286
