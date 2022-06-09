@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://models/hull_pieces/Level_2_7.obj" type="ArrayMesh" id=1]
 [ext_resource path="res://models/hull_pieces/Level_2_8.obj" type="ArrayMesh" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://models/hull_pieces/Level_1_8.obj" type="ArrayMesh" id=28]
 [ext_resource path="res://models/hull_pieces/Level_2_1.obj" type="ArrayMesh" id=29]
 [ext_resource path="res://models/hull_pieces/Level_1_2.obj" type="ArrayMesh" id=30]
+[ext_resource path="res://scenes/Water.tscn" type="PackedScene" id=31]
 
 [sub_resource type="Animation" id=5]
 resource_name = "move_camera_down"
@@ -143,6 +144,7 @@ script = ExtResource( 3 )
 camera_zoom_min = 3.0
 
 [node name="pieces" type="Spatial" parent="AnimationPlayer"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9, 0 )
 
 [node name="Floor_1" type="MeshInstance" parent="AnimationPlayer/pieces"]
 mesh = ExtResource( 15 )
@@ -377,7 +379,7 @@ mesh = ExtResource( 12 )
 material/0 = SubResource( 4 )
 
 [node name="camera_pivot" type="Spatial" parent="AnimationPlayer"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 
 [node name="camera_base" type="Spatial" parent="AnimationPlayer/camera_pivot"]
 
@@ -390,7 +392,6 @@ enabled = true
 cast_to = Vector3( 0, 0, -13 )
 
 [node name="RayCast2" type="RayCast" parent="AnimationPlayer/camera_pivot/camera_base/camera"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -13 )
 
@@ -398,5 +399,8 @@ cast_to = Vector3( 0, 0, -13 )
 transform = Transform( 0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0 )
 enabled = true
 cast_to = Vector3( 0, 0, -13 )
+
+[node name="Water" parent="." instance=ExtResource( 31 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_animation_finished"]
