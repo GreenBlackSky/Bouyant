@@ -13,64 +13,30 @@ export(float) var camera_zoom_min = 5
 var previous_mouse_position = Vector2()
 var previous_level = 0
 var current_level = 0
-var previous_piece_n
-var pieces_map
-
-
-func _ready():
-	pieces_map = [
-		[], # 0
-		[
-			$pieces/Level_1_1,
-			$pieces/Level_1_2,
-			$pieces/Level_1_3,
-			$pieces/Level_1_4,
-			$pieces/Level_1_5,
-			$pieces/Level_1_6,
-			$pieces/Level_1_7,
-			$pieces/Level_1_8
-		],[
-			$pieces/Level_2_1,
-			$pieces/Level_2_2,
-			$pieces/Level_2_3,
-			$pieces/Level_2_4,
-			$pieces/Level_2_5,
-			$pieces/Level_2_6,
-			$pieces/Level_2_7,
-			$pieces/Level_2_8
-		],[
-			$pieces/Level_3_1,
-			$pieces/Level_3_2,
-			$pieces/Level_3_3,
-			$pieces/Level_3_4,
-			$pieces/Level_3_5,
-			$pieces/Level_3_6,
-			$pieces/Level_3_7,
-			$pieces/Level_3_8
-		],
-	]
-	previous_piece_n = int(($camera_pivot.rotation.y/PI + 1) * 4)
-
-
-func swithc_group_visibility(old_y, old_x, new_y, new_x):
-	for i in range(3):
-		switch_visibility(old_y, (old_x + i)%8, true)
-		switch_visibility(new_y, (new_x + i)%8, false)
-
-
-func switch_visibility(y, x, visibility):
-	if len(pieces_map) > y and len(pieces_map[y]) > x:
-		pieces_map[y][x].visible = visibility
+var invisible_pieces = []
 
 
 func _update_invisible_peices():
-	var current_piece_n = int(($camera_pivot.rotation.y/PI + 1) * 4)
-	if current_level != previous_level:
-		swithc_group_visibility(previous_level, current_piece_n, current_level, current_piece_n)
-		previous_level = current_level
-	if previous_piece_n != current_piece_n:
-		swithc_group_visibility(current_level, previous_piece_n, current_level, current_piece_n)
-		previous_piece_n = current_piece_n
+	var raycasts = [
+		$camera_pivot/camera_base/camera/RayCast1,
+		$camera_pivot/camera_base/camera/RayCast2,
+		$camera_pivot/camera_base/camera/RayCast3
+	]
+	var colliding_pieces = []
+	for raycast in raycasts:
+		var collider = raycast.get_collider()
+		if collider and not colliding_pieces.has(collider.get_node("..")):
+			colliding_pieces.append(collider.get_node(".."))
+
+	for mesh in invisible_pieces:
+		if not colliding_pieces.has(mesh):
+			mesh.visible = true
+			
+	for mesh in colliding_pieces:
+		if not invisible_pieces.has(mesh):
+			mesh.visible = false
+
+	invisible_pieces = colliding_pieces
 
 
 func _process(delta):
